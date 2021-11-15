@@ -9,3 +9,5 @@ The future goals are:
 - Add a CRON Job to fetch 'current' floor price and detect changes hourly rather than comparing to previous day's floor price. This also cuts down on requests to the API.
 - Add a system to notify you of projects that have significant changes in the past hour.
 - Style the website (maybe convert to React and use components to style?)
+
+Live Deployment: https://solanafloortracker.netlify.app/
