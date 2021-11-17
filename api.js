@@ -22,6 +22,8 @@ async function startTracking() {
           const nftName = x.name;
           const currentFloor = x.floorPrice.value1d.toFixed(2);
           const previous1d = x.floorPrice.prev1d.toFixed(2);
+          const allTimeVolume = x.txVolume.valueAT.toFixed(2);
+          const VolumeChange1d = x.txVolume.value1d.toFixed(2);
 
           if (currentFloor > previous1d) {
             console.log("buy " + nftName);
