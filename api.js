@@ -1,6 +1,11 @@
 import { CronJob } from "cron";
 import { createTransport } from "nodemailer";
 import fetch from "node-fetch";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = "https://qvvqmkgtkinkmscqabvm.supabase.co";
+const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const apiUrl =
   "https://api-mainnet.magiceden.io/rpc/getAggregatedCollectionMetrics";
@@ -21,9 +26,9 @@ async function startTracking() {
         data.results.forEach((x) => {
           const nftName = x.name;
           const currentFloor = x.floorPrice.value1d.toFixed(2);
-          const previous1d = x.floorPrice.prev1d.toFixed(2);
+          //const previous1d = x.floorPrice.prev1d.toFixed(2);
           const allTimeVolume = x.txVolume.valueAT.toFixed(2);
-          const VolumeChange1d = x.txVolume.value1d.toFixed(2);
+          //const VolumeChange1d = x.txVolume.value1d.toFixed(2);
 
           if (currentFloor > previous1d) {
             console.log("buy " + nftName);
