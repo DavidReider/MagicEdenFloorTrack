@@ -2,6 +2,8 @@ import { CronJob } from "cron";
 import { createTransport } from "nodemailer";
 import fetch from "node-fetch";
 import { createClient } from "@supabase/supabase-js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const supabaseUrl = "https://qvvqmkgtkinkmscqabvm.supabase.co";
 const supabaseKey = process.env.SUPABASE_KEY;
@@ -26,13 +28,25 @@ async function startTracking() {
         data.results.forEach((x) => {
           const nftName = x.name;
           const currentFloor = x.floorPrice.value1d.toFixed(2);
-          //const previous1d = x.floorPrice.prev1d.toFixed(2);
           const allTimeVolume = x.txVolume.valueAT.toFixed(2);
-          //const VolumeChange1d = x.txVolume.value1d.toFixed(2);
 
-          if (currentFloor > previous1d) {
-            console.log("buy " + nftName);
-            //sendNotification(nftName);
+          if (x.name === "Solana Droid Business") {
+            //refactor to use async await
+
+            /*if (name x.name exists){ update } else { */
+
+            supabase
+              .from("SolanaFloorTracker")
+              .insert([
+                {
+                  CollectionName: nftName,
+                  FloorPrice: currentFloor,
+                  Volume: allTimeVolume,
+                },
+              ])
+              .then((response) => {
+                console.log(response);
+              });
           }
         });
       });
@@ -46,24 +60,25 @@ async function startTracking() {
   job.start();
 }
 
-async function sendNotification(collection) {
-  let transporter = createTransport({
-    service: "gmail",
-    auth: {
-      user: "*****@gmail.com",
-      pass: "*****",
-    },
-  });
-
-  let textToSend = `The collection ${collection} has significantly risen in price in the last hour.`;
-  let info = await transporter.sendMail({
-    from: '"Solana Floor Tracker" <*****@gmail.com>',
-    to: "*****@gmail.com",
-    subject: "Solana Floor Tracker Update",
-    text: textToSend,
-  });
-
-  console.log("Message sent: %s", info.messageId);
-}
-
 startTracking();
+
+//for later
+// async function sendNotification(collection) {
+//   let transporter = createTransport({
+//     service: "gmail",
+//     auth: {
+//       user: "*****@gmail.com",
+//       pass: "*****",
+//     },
+//   });
+
+//   let textToSend = `The collection ${collection} has significantly risen in price in the last hour.`;
+//   let info = await transporter.sendMail({
+//     from: '"Solana Floor Tracker" <*****@gmail.com>',
+//     to: "*****@gmail.com",
+//     subject: "Solana Floor Tracker Update",
+//     text: textToSend,
+//   });
+
+//   console.log("Message sent: %s", info.messageId);
+// }
