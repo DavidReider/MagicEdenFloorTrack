@@ -22,6 +22,12 @@ collections.then(function (data) {
   });
 });
 
+/**
+ * Rewrite to fetch data from Supabase.
+ * We will want to loop through each unique collection name and then fetch all rows from that collection.
+ * Then, we will populate the homepage table with the two most recent floor prices (one being the 'current', or most recent, and the other being the last floor price)
+ */
+
 function populateTable(collName, currFloor, prevFloor) {
   const table = document.getElementById("floorResults");
   const row = document.createElement("tr");
