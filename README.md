@@ -10,4 +10,4 @@ The future goals are:
 - Add a system to notify you of projects that have significant changes in the past hour.
 - Style the website (maybe convert to React and use components to style?)
 
-Live Deployment: https://solanafloortracker.herokuapp.com/
+Live Deployment: https://solanafloortracker.netlify.app/
