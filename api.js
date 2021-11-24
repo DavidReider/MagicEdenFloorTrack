@@ -22,32 +22,28 @@ async function startTracking() {
   const collections = fetchData(apiUrl);
 
   let job = new CronJob(
-    "0 * * * * *", // fetch every 60 minutes
+    "0 * * * *", // fetch every 60 minutes
     function () {
       collections.then(function (data) {
+        console.log(data.results.length);
         data.results.forEach((x) => {
           const nftName = x.name;
           const currentFloor = x.floorPrice.value1d.toFixed(2);
           const allTimeVolume = x.txVolume.valueAT.toFixed(2);
 
-          if (x.name === "Solana Droid Business") {
-            //refactor to use async await
-
-            /*if (name x.name exists){ update } else { */
-
-            supabase
-              .from("SolanaFloorTracker")
-              .insert([
-                {
-                  CollectionName: nftName,
-                  FloorPrice: currentFloor,
-                  Volume: allTimeVolume,
-                },
-              ])
-              .then((response) => {
-                console.log(response);
-              });
-          }
+          //refactor to use async await
+          supabase
+            .from("SolanaFloorTracker")
+            .insert([
+              {
+                CollectionName: nftName,
+                FloorPrice: currentFloor,
+                Volume: allTimeVolume,
+              },
+            ])
+            .then((response) => {
+              console.log(response);
+            });
         });
       });
     },
