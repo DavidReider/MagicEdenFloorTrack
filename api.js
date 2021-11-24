@@ -20,12 +20,9 @@ async function fetchData(url) {
 
 async function startTracking() {
   const collections = fetchData(apiUrl);
-  /**
-   * Every 30 minutes, fetch data from API and store within Supabase.
-   * Each loop in collections should create a new row in Supabase with a timestamp
-   */
+
   let job = new CronJob(
-    "* */30 * * * *", // fetch every 30 minutes
+    "0 * * * * *", // fetch every 60 minutes
     function () {
       collections.then(function (data) {
         data.results.forEach((x) => {
@@ -35,6 +32,9 @@ async function startTracking() {
 
           if (x.name === "Solana Droid Business") {
             //refactor to use async await
+
+            /*if (name x.name exists){ update } else { */
+
             supabase
               .from("SolanaFloorTracker")
               .insert([
