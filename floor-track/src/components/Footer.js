@@ -3,7 +3,7 @@ import React from "react";
 export default function Footer() {
   return (
     <div className="containter">
-      <div class="donation">
+      <div className="donation">
         Buy me a coffee!
         <br />
         Solana Wallet:
