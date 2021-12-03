@@ -12,5 +12,16 @@ export default function Table() {
 
   test();
 
-  return <div>Table Goes Here</div>;
+  return (
+    <div class="container">
+      <table id="floorResults">
+        <tr>
+          <th>Collection Name</th>
+          <th>Current Floor Price</th>
+          <th>Previous Floor Price (1-day)</th>
+          <th>Volume</th>
+        </tr>
+      </table>
+    </div>
+  );
 }
