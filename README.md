@@ -16,16 +16,22 @@ Live Deployment: <https://solanafloortracker.netlify.app/>
 
 ## Getting Started
 
-To open the front end, just double click on the `index.html` file to open it in your browser.
+To open the **front end**, just double click on the `index.html` file to open it in your browser.
 
-To run the API for updating the prices in the background:
+To run the **API** for updating the prices in the background:
 
 Create a `.env` file and add the missing api keys, that you can get from the author of this project.
 
-Then run:
+Install dependencies with:
 
 ```bash
-npm run start
+$ npm i
+```
+
+start the server with:
+
+```bash
+$ npm run start
 ```
 
 ## Contribution
@@ -34,7 +40,6 @@ npm run start
 
 1. fork the repository
 2. git clone the forked repository
-3. run 'npm install' within the repository
-4. create a feature branch
-5. make changes
-6. push changes and create a pull request to the main repository
+3. create a feature branch
+4. make changes
+5. push changes and create a pull request to the main repository
