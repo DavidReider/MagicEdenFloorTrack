@@ -12,12 +12,27 @@ The future goals are:
 - Add innerpages for more detailed graph/history of floor price for a given collection.
 - Style the website to look better.
 
-Live Deployment: https://solanafloortracker.netlify.app/
+Live Deployment: <https://solanafloortracker.netlify.app/>
 
+## Getting Started
 
-Contribution:
+To open the front end, just double click on the `index.html` file to open it in your browser.
+
+To run the API for updating the prices in the background:
+
+Create a `.env` file and add the missing api keys, that you can get from the author of this project.
+
+Then run:
+
+```bash
+npm run start
+```
+
+## Contribution
+
 (this section needs fleshed out)
-1. fork the repository 
+
+1. fork the repository
 2. git clone the forked repository
 3. run 'npm install' within the repository
 4. create a feature branch
