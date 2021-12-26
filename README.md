@@ -17,8 +17,9 @@ Live Deployment: https://solanafloortracker.netlify.app/
 
 Contribution:
 (this section needs fleshed out)
-1. git clone the repository
-2. run 'npm install' within the repository
-3. create a feature branch
-4. make changes
-5. push changes and create a pull request
+1. fork the repository 
+2. git clone the forked repository
+3. run 'npm install' within the repository
+4. create a feature branch
+5. make changes
+6. push changes and create a pull request to the main repository
