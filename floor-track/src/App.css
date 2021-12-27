@@ -43,7 +43,10 @@ td {
   border: 2px solid #2c3266;
   color: #00cccc;
 }
-
+p,
+h2 {
+  color: #fff;
+}
 table {
   border-collapse: collapse;
 }
