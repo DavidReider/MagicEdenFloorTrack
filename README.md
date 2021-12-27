@@ -30,6 +30,8 @@ $ npm run start
 
 To run the **API** for updating the prices in the background:
 
+Ensure you are in the root of the document.
+
 Create a `.env` file and add the missing api keys, that you can get from the author of this project.
 
 Install dependencies with:
