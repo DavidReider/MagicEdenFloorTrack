@@ -16,7 +16,17 @@ Live Deployment: <https://solanafloortracker.netlify.app/>
 
 ## Getting Started
 
-To open the **front end**, just double click on the `index.html` file to open it in your browser.
+To open the **front end**, you will want to clone the repository, navitage into the `/floor-track/` folder, create a `.env` file and add missing API keys that you can get from the author of this project and then run the following to install dependencies:
+
+```bash
+$ npm i
+```
+
+and then start the front end server with
+
+```bash
+$ npm run start
+```
 
 To run the **API** for updating the prices in the background:
 
