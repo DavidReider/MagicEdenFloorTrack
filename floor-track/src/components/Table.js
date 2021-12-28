@@ -12,12 +12,18 @@ export default function Table() {
       supabase
         .from("SolanaFloorTracker")
         //only selecting the given columns
-        .select("FloorPrice, CollectionName, Volume")
+        .select("FloorPrice, CollectionName, Volume, created_at")
         //filtering the results that only have 'business' in the name
         //so that we have less data to test and work with which is easier
+        //TODO: Replace this text search with pagination
         .textSearch("CollectionName", "business")
+
+        //I am unable to make this work I am basically tryinhg to only get
+        //last 2 options for each project
+        //.rangeAdjacent("created_at", ["2021-12-25", "2021-12-28"])
+        
         .order("CollectionName", { ascending: true })
-        .order("created_at", { ascending: false })
+        .order("created_at", { ascending: true })
         .then(({ error, data, count, status, statusText }) => {
           if (error) {
             //you can test this by adding a letter to 'SolanaFloorTracker' to see error.message
@@ -41,7 +47,7 @@ export default function Table() {
         }),
     []
   );
-  
+
   return (
     <div className="container">
       {fetchState === "LOADING" && <h2>Loading</h2>}
@@ -53,6 +59,7 @@ export default function Table() {
               <th>Current Floor Price</th>
               <th>Previous Floor Price (1-day)</th>
               <th>Volume</th>
+              <th>date</th>
             </tr>
           </thead>
           <tbody>
@@ -65,6 +72,7 @@ export default function Table() {
                   <td>{row.FloorPrice}</td>
                   <td>{row.FloorPrice}</td>
                   <td>{row.Volume}</td>
+                  <td>{row.created_at}</td>
                 </tr>
               ))}
           </tbody>
