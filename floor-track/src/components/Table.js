@@ -21,7 +21,7 @@ export default function Table() {
         //I am unable to make this work I am basically tryinhg to only get
         //last 2 options for each project
         //.rangeAdjacent("created_at", ["2021-12-25", "2021-12-28"])
-        
+
         .order("CollectionName", { ascending: true })
         .order("created_at", { ascending: true })
         .then(({ error, data, count, status, statusText }) => {
@@ -48,6 +48,14 @@ export default function Table() {
     []
   );
 
+  const test = () => {
+    supabase.rpc("test").then(({ error, data, count, status, statusText }) => {
+      if (error) console.error(error);
+      else console.log(data);
+    });
+  };
+
+  test();
   return (
     <div className="container">
       {fetchState === "LOADING" && <h2>Loading</h2>}
