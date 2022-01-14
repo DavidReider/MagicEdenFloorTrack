@@ -3,11 +3,7 @@ import { supabase } from "../lib/supabase-api";
 
 export default function Table() {
   const test = async () => {
-    let { data, error } = await supabase
-      .from("SolanaFloorTracker")
-      .select("*")
-      .order("CollectionName", { ascending: true })
-      .order("created_at", { ascending: false });
+    let { data, error } = await supabase.rpc("test1");
     if (error) {
       console.error(error);
     }
