@@ -48,11 +48,14 @@ export default function Table() {
     []
   );
 
-  const test = () => {
-    supabase.rpc("test").then(({ error, data, count, status, statusText }) => {
-      if (error) console.error(error);
-      else console.log(data);
-    });
+
+  const test = async () => {
+    let { data, error } = await supabase.rpc("fetch_data");
+    if (error) {
+      console.error(error);
+    }
+    console.log(data);
+
   };
 
   test();
