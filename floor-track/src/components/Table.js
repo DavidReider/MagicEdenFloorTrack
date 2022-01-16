@@ -3,7 +3,7 @@ import { supabase } from "../lib/supabase-api";
 
 export default function Table() {
   const test = async () => {
-    let { data, error } = await supabase.rpc("test1");
+    let { data, error } = await supabase.rpc("fetch_data");
     if (error) {
       console.error(error);
     }
