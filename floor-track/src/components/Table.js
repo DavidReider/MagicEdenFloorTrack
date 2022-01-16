@@ -10,7 +10,7 @@ export default function Table() {
   useEffect(
     () =>
       supabase
-        .from("SolanaFloorTracker")
+        .rpc("fetch_data")
         //only selecting the given columns
         .select("FloorPrice, CollectionName, Volume, created_at")
         //filtering the results that only have 'business' in the name
