@@ -13,10 +13,7 @@ export default function Table() {
         .rpc("fetch_data")
         //only selecting the given columns
         .select("FloorPrice, CollectionName, Volume, created_at")
-        //filtering the results that only have 'business' in the name
-        //so that we have less data to test and work with which is easier
-        //TODO: Replace this text search with pagination
-        .textSearch("CollectionName", "business")
+        //TODO: add pagination to reduce the number of results shown each time
         .order("CollectionName", { ascending: true })
         .order("created_at", { ascending: true })
         .then(({ error, data, count, status, statusText }) => {
@@ -37,6 +34,9 @@ export default function Table() {
           return;
         })
         .catch((error) => {
+          // set the error message here
+          // this was especially useful when writing the 
+          // combine rows function as icould see the errors
           setFetchState(error.message);
           return;
         }),
@@ -80,7 +80,6 @@ export default function Table() {
               <th>Current Floor Price</th>
               <th>Previous Floor Price (1-day)</th>
               <th>Volume</th>
-              <th>date</th>
             </tr>
           </thead>
           <tbody>
@@ -93,7 +92,6 @@ export default function Table() {
                   <td>{row.latestPrice}</td>
                   <td>{row.FloorPrice}</td>
                   <td>{row.Volume}</td>
-                  <td>{row.created_at}</td>
                 </tr>
               ))}
           </tbody>
