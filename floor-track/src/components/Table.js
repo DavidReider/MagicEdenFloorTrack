@@ -17,11 +17,6 @@ export default function Table() {
         //so that we have less data to test and work with which is easier
         //TODO: Replace this text search with pagination
         .textSearch("CollectionName", "business")
-
-        //I am unable to make this work I am basically tryinhg to only get
-        //last 2 options for each project
-        //.rangeAdjacent("created_at", ["2021-12-25", "2021-12-28"])
-
         .order("CollectionName", { ascending: true })
         .order("created_at", { ascending: true })
         .then(({ error, data, count, status, statusText }) => {
@@ -33,7 +28,7 @@ export default function Table() {
           }
           //if we have data to show print here
           if (data && data.length) {
-            setRows(data);
+            setRows(combineRows(data));
             setFetchState("SUCCESS");
             return;
           }
@@ -48,17 +43,32 @@ export default function Table() {
     []
   );
 
+  const combineRows = (data) => {
+    console.log(1);
+    // empty array to keep the new combined objects
+    const newArray = [];
+    // looping through the results
+    data.forEach((current, index) => {
+    // if the current row number is divisable by 2 
+    // means the next row will be the matching pair of the current row
+    // we rely on the data being structured here structure 
+    // which is not the best solution as now if the order gets shuffled 
+    // this wont work
+      if (index % 2 === 0) {
+    // adding a new key value pair to the object 
+    // the next obejects floor price, which is the 
+    // latest floor price
+        current["latestPrice"] = data[index + 1].FloorPrice;
+    // push the result to the empty array
+        newArray.push(current);
+      }
+    });
+    console.log(2);
 
-  const test = async () => {
-    let { data, error } = await supabase.rpc("fetch_data");
-    if (error) {
-      console.error(error);
-    }
-    console.log(data);
-
+    console.log(newArray);
+    return newArray;
   };
 
-  test();
   return (
     <div className="container">
       {fetchState === "LOADING" && <h2>Loading</h2>}
@@ -80,7 +90,7 @@ export default function Table() {
                   {/* this is just place holder to put all the data we have so far */}
                   {/* we still need to calculate the previous floor and remove te rows before that */}
                   <td>{row.CollectionName}</td>
-                  <td>{row.FloorPrice}</td>
+                  <td>{row.latestPrice}</td>
                   <td>{row.FloorPrice}</td>
                   <td>{row.Volume}</td>
                   <td>{row.created_at}</td>
