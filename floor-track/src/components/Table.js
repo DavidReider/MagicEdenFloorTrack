@@ -35,7 +35,7 @@ export default function Table() {
         })
         .catch((error) => {
           // set the error message here
-          // this was especially useful when writing the 
+          // this was especially useful when writing the
           // combine rows function as icould see the errors
           setFetchState(error.message);
           return;
@@ -44,28 +44,25 @@ export default function Table() {
   );
 
   const combineRows = (data) => {
-    console.log(1);
     // empty array to keep the new combined objects
     const newArray = [];
     // looping through the results
     data.forEach((current, index) => {
-    // if the current row number is divisable by 2 
-    // means the next row will be the matching pair of the current row
-    // we rely on the data being structured here structure 
-    // which is not the best solution as now if the order gets shuffled 
-    // this wont work
+      // if the current row number is divisable by 2
+      // means the next row will be the matching pair of the current row
+      // we rely on the data being structured here structure
+      // which is not the best solution as now if the order gets shuffled
+      // this wont work
       if (index % 2 === 0) {
-    // adding a new key value pair to the object 
-    // the next obejects floor price, which is the 
-    // latest floor price
+        // adding a new key value pair to the object
+        // the next obejects floor price, which is the
+        // latest floor price
         current["latestPrice"] = data[index + 1].FloorPrice;
-    // push the result to the empty array
+        // push the result to the empty array
         newArray.push(current);
       }
     });
-    console.log(2);
 
-    console.log(newArray);
     return newArray;
   };
 
