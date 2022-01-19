@@ -1,0 +1,1 @@
+web : cd .\floor-track\ && npm start
