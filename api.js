@@ -22,7 +22,7 @@ async function startTracking() {
   const collections = fetchData(apiUrl);
 
   let job = new CronJob(
-    "0 * * * *", // fetch every 60 minutes
+    "0 3 * * *", // fetch every day at 03:00
     function () {
       collections.then(function (data) {
         console.log(data.results.length);
@@ -30,7 +30,8 @@ async function startTracking() {
           const nftName = x.name;
           const currentFloor = x.floorPrice.value1d.toFixed(2);
           const allTimeVolume = x.txVolume.valueAT.toFixed(2);
-
+            
+          if( allTimeVolume > 1000 ) {
           //refactor to use async await
           supabase
             .from("SolanaFloorTracker")
@@ -44,6 +45,7 @@ async function startTracking() {
             .then((response) => {
               console.log(response);
             });
+          }
         });
       });
     },
