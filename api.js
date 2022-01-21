@@ -31,7 +31,7 @@ async function startTracking() {
           const currentFloor = x.floorPrice.value1d.toFixed(2);
           const allTimeVolume = x.txVolume.valueAT.toFixed(2);
             
-          if( allTimeVolume > 1000 ) {
+          if( allTimeVolume > 10000 ) {
           //refactor to use async await
           supabase
             .from("SolanaFloorTracker")
